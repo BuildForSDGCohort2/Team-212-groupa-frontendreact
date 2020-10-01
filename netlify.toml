@@ -1,4 +1,4 @@
 [build]
   command = "yarn build"
-  publish="smartfarm/build"
+  publish="/build"
   base = "smartfarm"
