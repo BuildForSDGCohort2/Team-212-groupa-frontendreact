@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
+import Mynavbar from './components/layout/Navbar'
 
 function App() {
   return (
     <div className="App">
       <div className="container-fluid text-center">
-        <hi className="text-info"> Welcome to smartfarm</hi>
+      <Mynavbar />
       </div>
     </div>
   );
