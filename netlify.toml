@@ -2,3 +2,8 @@
   command = "yarn build"
   publish="/build"
   base = "smartfarm"
+  
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
