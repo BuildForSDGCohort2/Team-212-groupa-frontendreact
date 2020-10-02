@@ -33,7 +33,7 @@ export class Home extends Component {
               <div className="card #1b5e20 green darken-4">
                 <div className="card-header">Land Prep</div>
                 <div className="card-body">
-                  <img src={landPrep} className="img-responsive imgMore" />
+                  <img src={landPrep} alt="crop image" className="img-responsive imgMore" />
                 </div>
                 <div className="card-footer">
                   <button>View articles on Land Prep</button>
@@ -44,7 +44,7 @@ export class Home extends Component {
               <div className="card #1b5e20 green darken-4">
                 <div className="card-header">Crop Selection</div>
                 <div className="card-body">
-                  <img src={cropSelect} className="img-responsive imgMore" />
+                  <img src={cropSelect} alt="crop image" className="img-responsive imgMore" />
                 </div>
                 <div className="card-footer">
                   {" "}
@@ -56,7 +56,7 @@ export class Home extends Component {
               <div className="card #1b5e20 green darken-4">
                 <div className="card-header">Crop Care</div>
                 <div className="card-body">
-                  <img src={fertilizer} className="img-responsive imgMore" />
+                  <img src={fertilizer} alt="crop image" className="img-responsive imgMore" />
                 </div>
                 <div className="card-footer">
                   {" "}
@@ -68,7 +68,7 @@ export class Home extends Component {
               <div className="card #1b5e20 green darken-4">
                 <div className="card-header">Post harvesting</div>
                 <div className="card-body">
-                  <img src={marketing} className="img-responsive imgMore" />
+                  <img src={marketing} alt="crop image" className="img-responsive imgMore" />
                 </div>
                 <div className="card-footer">
                   {" "}
