@@ -86,7 +86,7 @@ export class Register extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <button className="" type="submit" className="mt-2">
+              <button type="submit" className="mt-2">
                 Submit
               </button>
               <p className="mt-2">
