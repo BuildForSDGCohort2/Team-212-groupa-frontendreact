@@ -5,7 +5,7 @@ import Mynavbar from './components/layout/Navbar'
 function App() {
   return (
     <div className="App">
-      <div className="container-fluid text-center">
+      <div className="container-fluid text-center overlay">
       <Mynavbar />
       </div>
     </div>
