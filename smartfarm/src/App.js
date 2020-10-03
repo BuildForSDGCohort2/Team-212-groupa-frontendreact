@@ -6,11 +6,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-
     <div className="container-fluid text-center overlay App">
       <Router>
-      <Mynavbar />
-      <Footer />
+        <Mynavbar />
+        <Footer />
       </Router>
     </div>
   );
