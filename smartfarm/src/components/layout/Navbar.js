@@ -5,13 +5,14 @@ import Home from "../blog/Home";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
 import Arcticles from "../blog/Articles";
+import Licence from "../Licence"
 
 class Mynavbar extends React.Component {
   render() {
     return (
       <div>
        
-            <Router>
+            {/* <Router> */}
               <Navbar variant="dark" expand="lg" className="#1b5e20 green darken-4" >
                 <Navbar.Brand href="/">Smartfarm</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -45,8 +46,11 @@ class Mynavbar extends React.Component {
                 <Route path="/arcticles">
                   <Arcticles />
                 </Route>
+                <Route path="/licence">
+                  <Licence />
+                </Route>
               </Switch>
-            </Router>
+            {/* </Router> */}
        
       </div>
     );
