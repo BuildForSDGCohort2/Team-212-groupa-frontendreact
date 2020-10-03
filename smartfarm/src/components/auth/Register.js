@@ -90,7 +90,7 @@ export class Register extends Component {
                 Submit
               </button>
               <p className="mt-2">
-                Already have an account? <Link to="/login">Login</Link> 
+                Already have an account? <Link to="/login">Login</Link>
               </p>
             </form>
           </div>

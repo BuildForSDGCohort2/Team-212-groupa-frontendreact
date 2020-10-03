@@ -1,24 +1,22 @@
 .App {
   text-align: center;
-
+  min-height: 100vh;
 }
-
 
 .App-link {
   color: #61dafb;
 }
-a:hover{
+a:hover {
   background-color: thistle;
 }
 
-.overlay{
-  color:white;
-  background-color: rgba(0,0,0,0.7);
-  
+.overlay {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
 }
-.imgMore{
+.imgMore {
   width: 100%;
 }
-.card{
+.card {
   min-height: 450px;
 }
