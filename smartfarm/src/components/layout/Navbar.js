@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {Switch, Route } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import Home from "../blog/Home";
 import Register from "../auth/Register";

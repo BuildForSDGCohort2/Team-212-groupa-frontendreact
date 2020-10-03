@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MDBContainer, MDBFooter } from "mdbreact";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Licence from "../Licence";
+import {Link } from "react-router-dom";
+
 
 export class Footer extends Component {
   render() {
