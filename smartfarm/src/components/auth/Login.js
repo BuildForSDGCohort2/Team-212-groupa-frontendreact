@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { login } from "../../actions/auth";
-import { connect, createStoreHook } from "react-redux";
+import { connect } from "react-redux";
 import { createMessage } from "../../actions/messages";
 
 export class Login extends Component {

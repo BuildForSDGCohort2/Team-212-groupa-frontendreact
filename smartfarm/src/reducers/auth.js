@@ -3,7 +3,7 @@ import {
     USER_LOADING,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGOUT_SUCCESS,
+    // LOGOUT_SUCCESS,
     LOGIN_FAIL,
     REGISTER_SUCCESS,
   } from "../types/types";
