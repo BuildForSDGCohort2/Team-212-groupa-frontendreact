@@ -75,7 +75,7 @@ export class Login extends Component {
               <div>
                 <input
                   className="form-control"
-                  type={this.state.hidden? "password":"text"}
+                  type={this.state.hidden ? "password" : "text"}
                   name="password"
                   id="passwordReg"
                   value={this.state.password}
@@ -88,7 +88,7 @@ export class Login extends Component {
               </button>
               <i
                 onClick={this.toggleShow}
-                class={
+                className={
                   this.state.hidden ? "fa fa-eye mx-2" : "fa fa-eye-slash mx-2"
                 }
               ></i>
