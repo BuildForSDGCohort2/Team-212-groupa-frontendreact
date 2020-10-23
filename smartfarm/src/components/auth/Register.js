@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { register } from "../../actions/auth";
+import { connect } from "react-redux";
+import { createMessage } from "../../actions/messages";
 
 export class Register extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: "username",
-      email: "email",
-      password: "password",
-      passConfirm: "passConfirm",
+      username: "",
+      email: "",
+      password: "",
+      passConfirm: "",
+      hidden: true,
+      accountCreated: false,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -18,7 +23,47 @@ export class Register extends Component {
       [event.target.name]: event.target.value,
     });
   };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if (this.state.username === "") {
+      const msg = {
+        UsernameBlank: "Username cannot be blank",
+      };
+      this.props.createMessage(msg);
+    } else if (this.state.email === "") {
+      const msg = {
+        EmailBlank: "Email cannot be blank",
+      };
+      this.props.createMessage(msg);
+    } else if (this.state.password === "" || this.state.passConfirm === "") {
+      const msg = {
+        PasswordBlank: "Password cannot be blank",
+      };
+      this.props.createMessage(msg);
+    } else if (this.state.password !== this.state.passConfirm) {
+      const msg = {
+        PasswordMatch: "Passwords do not match",
+      };
+      this.props.createMessage(msg);
+    } else {
+      const { username, email, password } = this.state;
+      this.props.register(username, email, password);
+      this.setState({
+        accountCreated: true,
+      });
+    }
+  };
+
+  toggleShow = () => {
+    this.setState({
+      hidden: !this.state.hidden,
+    });
+  };
   render() {
+    if (this.state.accountCreated) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="container-fluid">
         <div className="row">
@@ -32,7 +77,7 @@ export class Register extends Component {
                 technques.
               </p>
             </div>
-            <form className="mt-5 mb-5">
+            <form onSubmit={this.handleSubmit} className="mt-5 mb-5">
               <legend className="text-success">Join Us Today</legend>
               <div>
                 <label htmlFor="usernameReg">Username</label>
@@ -66,7 +111,7 @@ export class Register extends Component {
               <div>
                 <input
                   className="form-control"
-                  type="text"
+                  type={this.state.hidden ? "password" : "text"}
                   id="passwordReg"
                   name="password"
                   value={this.state.password}
@@ -79,7 +124,7 @@ export class Register extends Component {
               <div>
                 <input
                   className="form-control"
-                  type="text"
+                  type={this.state.hidden ? "password" : "text"}
                   id="passConfirmReg"
                   name="passConfirm"
                   value={this.state.passConfirm}
@@ -89,6 +134,13 @@ export class Register extends Component {
               <button type="submit" className="mt-2">
                 Submit
               </button>
+              <i
+                onClick={this.toggleShow}
+                class={
+                  this.state.hidden ? "fa fa-eye mx-2" : "fa fa-eye-slash mx-2"
+                }
+              ></i>
+
               <p className="mt-2">
                 Already have an account? <Link to="/login">Login</Link>
               </p>
@@ -101,4 +153,16 @@ export class Register extends Component {
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    register: (username, email, password) =>
+      dispatch(register(username, email, password)),
+    createMessage: (msg) => dispatch(createMessage(msg)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
