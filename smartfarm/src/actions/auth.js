@@ -7,6 +7,7 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   GET_ERRORS,
+  LOGOUT_SUCCESS,
 } from "../types/types";
 import { createMessage } from "../actions/messages";
 
@@ -125,6 +126,42 @@ export const register = (username, email, password) => (dispatch) => {
       });
       dispatch({
         type: REGISTER_FAIL,
+      });
+    });
+};
+
+// LOGOUT USER
+export const logout = () => (dispatch, getState) => {
+  //Get Token from state
+  const token = getState().auth.token;
+
+  //Headers
+  const config = {
+    method: "post",
+    url: "https://smartfarmendpoints.herokuapp.com/api/auth/logout/",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: null,
+  };
+
+  //if token, add to headers config
+  if (token) {
+    config.headers["Authorization"] = `Token ${token}`;
+  }
+  axios(config)
+    .then(() => {
+      dispatch({ type: LOGOUT_SUCCESS });
+      window.location.reload(false);
+    })
+    .catch((err) => {
+      const errors = {
+        msg: err.response.data,
+        status: err.response.status,
+      };
+      dispatch({
+        type: GET_ERRORS,
+        payload: errors,
       });
     });
 };

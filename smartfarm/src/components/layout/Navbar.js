@@ -1,13 +1,20 @@
-import React from "react";
-import {Switch, Route } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Switch, Route } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import Home from "../blog/Home";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
 import Arcticles from "../blog/Articles";
 import Licence from "../Licence";
+import { connect } from "react-redux";
+import { logout } from "../../actions/auth";
 
 class Mynavbar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+  }
   render() {
     return (
       <div>
@@ -21,8 +28,16 @@ class Mynavbar extends React.Component {
             </Nav>
 
             <Nav className="">
-              <Nav.Link href="/register">Register</Nav.Link>
-              <Nav.Link href="/login">Login</Nav.Link>
+              {this.props.isAuthenticated ? (
+                <Fragment>
+                  <Nav.Link onClick={this.props.logout}>logout</Nav.Link>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <Nav.Link href="/register">Register</Nav.Link>
+                  <Nav.Link href="/login">Login</Nav.Link>
+                </Fragment>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -49,4 +64,16 @@ class Mynavbar extends React.Component {
   }
 }
 
-export default Mynavbar;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Mynavbar);
