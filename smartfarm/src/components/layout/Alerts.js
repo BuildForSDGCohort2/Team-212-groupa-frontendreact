@@ -49,6 +49,9 @@ export class Alerts extends Component {
       if (message.PasswordMatch) {
         alert.error(message.PasswordMatch);
       }
+      if (message.Login) {
+        alert.error(message.Login);
+      }
     }
   };
 

@@ -44,12 +44,23 @@ export class Login extends Component {
     }
   };
 
+  componentDidMount = () => {
+    setTimeout(() => {
+      if (!this.props.isAuthenticated) {
+        const message = {
+          Login: "You need to log in to be able to view the articles!",
+        };
+        this.props.createMessage(message);
+      }
+    }, 500);
+  };
+
   render() {
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/articles" />;
     }
     return (
-      <div className="container-fluid">
+      <div className="container-fluid loginApp">
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6">

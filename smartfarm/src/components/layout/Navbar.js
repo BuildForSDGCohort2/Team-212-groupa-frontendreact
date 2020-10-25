@@ -4,10 +4,11 @@ import { Navbar, Nav } from "react-bootstrap";
 import Home from "../blog/Home";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
-import Arcticles from "../blog/Articles";
+import Articles from "../blog/Articles";
 import Licence from "../Licence";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
+import PrivateRoute from "../PrivateRoute";
 
 class Mynavbar extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Mynavbar extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/arcticles">Arcticles</Nav.Link>
+              <Nav.Link href="/articles">Articles</Nav.Link>
             </Nav>
 
             <Nav className="">
@@ -52,9 +53,8 @@ class Mynavbar extends React.Component {
           <Route path="/login">
             <Login />
           </Route>
-          <Route path="/arcticles">
-            <Arcticles />
-          </Route>
+          <PrivateRoute exact path="/articles" component={Articles} />
+
           <Route path="/licence">
             <Licence />
           </Route>

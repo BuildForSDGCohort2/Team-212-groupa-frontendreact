@@ -6,6 +6,7 @@
 .App-link {
   color: #61dafb;
 }
+
 a:hover {
   background-color: thistle;
 }
@@ -14,9 +15,20 @@ a:hover {
   color: white;
   background-color: rgba(0, 0, 0, 0.7);
 }
+
 .imgMore {
   width: 100%;
 }
+
 .card {
   min-height: 450px;
+}
+
+.cropImage {
+  width: 50%;
+  height: auto;
+}
+
+.articlesCont, .loginApp, .registerApp {
+  min-height: 88vh;
 }

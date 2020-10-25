@@ -65,7 +65,7 @@ export class Register extends Component {
       return <Redirect to="/login" />;
     }
     return (
-      <div className="container-fluid">
+      <div className="container-fluid registerApp">
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6">
@@ -136,7 +136,7 @@ export class Register extends Component {
               </button>
               <i
                 onClick={this.toggleShow}
-                class={
+                className={
                   this.state.hidden ? "fa fa-eye mx-2" : "fa fa-eye-slash mx-2"
                 }
               ></i>
