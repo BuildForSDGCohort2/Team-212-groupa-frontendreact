@@ -3,9 +3,38 @@ import fertilizer from "../../assets/fertilizer1.jpg";
 import landPrep from "../../assets/oxen.png";
 import cropSelect from "../../assets/seeds.jpg";
 import marketing from "../../assets/marigiti.jpg";
+import { connect } from "react-redux";
+import { loadArticles } from "../../actions/articles";
+import { Redirect } from "react-router-dom";
 
 export class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectionClicked: false,
+      prepClicked: false,
+      careClicked: false,
+      postClicked: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidMount = () => {};
+
+  handleClick = (stage) => {
+    this.props.loadArticles(stage);
+  };
+
   render() {
+    const {
+      selectionClicked,
+      careClicked,
+      prepClicked,
+      postClicked,
+    } = this.state;
+    if (selectionClicked || careClicked || prepClicked || postClicked) {
+      return <Redirect to="/articles" />;
+    }
     return (
       <div className="container-fluid">
         <div className="">
@@ -40,7 +69,16 @@ export class Home extends Component {
                   />
                 </div>
                 <div className="card-footer">
-                  <button>View articles on Land Prep</button>
+                  <button
+                    onClick={() => {
+                      this.handleClick("Land Preparation");
+                      this.setState({
+                        prepClicked: true,
+                      });
+                    }}
+                  >
+                    View articles on Land Prep
+                  </button>
                 </div>
               </div>
             </div>
@@ -56,7 +94,16 @@ export class Home extends Component {
                 </div>
                 <div className="card-footer">
                   {" "}
-                  <button>View articles on crop selection</button>
+                  <button
+                    onClick={() => {
+                      this.handleClick("Crop Selection");
+                      this.setState({
+                        selectionClicked: true,
+                      });
+                    }}
+                  >
+                    View articles on crop selection
+                  </button>
                 </div>
               </div>
             </div>
@@ -72,7 +119,16 @@ export class Home extends Component {
                 </div>
                 <div className="card-footer">
                   {" "}
-                  <button>View articles on crop care</button>
+                  <button
+                    onClick={() => {
+                      this.handleClick("Crop Care");
+                      this.setState({
+                        careClicked: true,
+                      });
+                    }}
+                  >
+                    View articles on crop care
+                  </button>
                 </div>
               </div>
             </div>
@@ -88,7 +144,16 @@ export class Home extends Component {
                 </div>
                 <div className="card-footer">
                   {" "}
-                  <button>View articles on post harvesting</button>
+                  <button
+                    onClick={() => {
+                      this.handleClick("Post Harvesting");
+                      this.setState({
+                        postClicked: true,
+                      });
+                    }}
+                  >
+                    View articles on post harvesting
+                  </button>
                 </div>
               </div>
             </div>
@@ -98,5 +163,13 @@ export class Home extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {};
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadArticles: (stage) => dispatch(loadArticles(stage)),
+  };
+};
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
