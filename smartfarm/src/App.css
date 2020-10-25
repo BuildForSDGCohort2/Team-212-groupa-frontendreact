@@ -20,3 +20,10 @@ a:hover {
 .card {
   min-height: 450px;
 }
+.cropImage{
+  width: 50%;
+  height: auto;
+}
+.articlesCont, .loginApp, .registerApp {
+  min-height: 88vh;
+}
