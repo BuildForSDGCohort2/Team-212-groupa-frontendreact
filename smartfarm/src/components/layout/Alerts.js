@@ -50,7 +50,6 @@ export class Alerts extends Component {
         alert.error(message.PasswordMatch);
       }
       if (message.Login) {
-        console.log("you need to be loged in!");
         alert.error(message.Login);
       }
     }
