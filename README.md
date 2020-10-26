@@ -2,6 +2,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/83399c70f6a246bb9616c80a2a71f8c7)](https://app.codacy.com/gh/BuildForSDGCohort2/Team-212-groupa-frontendreact?utm_source=github.com&utm_medium=referral&utm_content=BuildForSDGCohort2/Team-212-groupa-frontendreact&utm_campaign=Badge_Grade_Settings)
 
+![About this tutorial](smartfarm/src/assets/tutorialSnaps/smartfarmtutorial.mp4)
+
 ### About
 
 In this tutorial, I will be walking you step by step on how to consume the [farmers blog API](https://smartfarmendpoints.herokuapp.com/) and display the content in a beautiful, smart-looking and responsive UI/UX using [CreateReactApp](https://github.com/facebook/create-react-app).
