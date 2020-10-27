@@ -112,5 +112,8 @@ export const addArticles = (crop, farmer, title, stage, content) => (
         type: GET_ERRORS,
         payload: errors,
       });
+      dispatch({
+        type:ADD_ARTICLES_FAIL
+      })
     });
 };
