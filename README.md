@@ -18,11 +18,11 @@ Checkout this [tutorial](https://docs.npmjs.com/downloading-and-installing-node-
 
 ### Getting our feet wet
 
-Lets get out our feet wet by diving into the project. I like backing up my projects on the cloud, in this case I will be using github. Login in to your github accout and create a repository. Make sure the public option,add readme file, add .gitignore and choose licence options are selected as shown below.
+Lets get our feet wet by diving into the project. I like backing up my projects on the cloud, in this case I will be using github. Login in to your github accout and create a repository. Make sure the public option,add readme file, add .gitignore and choose licence options are selected as shown below.
 
 ![Repo snapshort](smartfarm/src/assets/tutorialSnaps/tutorial01.png)
 
-Next, we will clone the application so that we start working on it locally. Go to the repository youve just created and copy the link.
+Next, we will clone the application so that we start working on it locally. Go to the repository you've just created and copy the link.
 
 Then navigate to your project folder on your computer and clone the repository using the following command.
 
@@ -32,7 +32,7 @@ $ git clone https://github.com/BuildForSDGCohort2/Team-212-groupa-frontendreact.
 
 You will be requested for your github account password.
 
-We now have access to the repository locally and we can now start workin on it. Change your directory into the new created folder :
+We now have access to the repository locally and we can start working on it. Change your directory into the new created folder :
 
 ```
 $ cd Team-212-groupa-frontendreact
@@ -54,7 +54,7 @@ $ cd smartfarm
 $ yarn start
 ```
 
-If we navigate into our browser on localholst port 3000, we are greeted with a nice logo. Our aplication is now runnning and all we need to do is add our code.
+If we navigate into our browser on localholst port 3000, we are greeted with a nice REACT logo. Our aplication is now runnning and all we need to do is add our code.
 ![React app](smartfarm/src/assets/tutorialSnaps/reactApp.png)
 
 ### Adding our project files
@@ -80,8 +80,8 @@ Change your directory into the **src** folder and add the following folders and 
         1.  Login.js
         1.  Register.js
     1.  blog/
-    1.  Home.js
-    1.  Article.js
+        1.  Home.js
+        1.  Article.js
 
 1.  assets/
 1.  reducers/
@@ -89,7 +89,7 @@ Change your directory into the **src** folder and add the following folders and 
     1.  auth.js
     1.  articles.js
     1.  errors.js
-        1 . messages.js
+    1.  messages.js
 1.  store.js
 
 The files and folders are descriptive. For example the actions folder contain action files such as auth that will be holding the functions making API requests.
@@ -102,7 +102,7 @@ We are going to use the following dependencies in our applicaction for state man
 1.  Redux-devtools-extension
 1.  redux-thunk
 
-Run the following command on your terminal:
+Run the following command on your terminal to install the dependencies:
 
 ```
 $ yarn add redux react-redux redux-devtools-extension redux-thunk
@@ -134,7 +134,7 @@ export default store;
 
 We have just created the store that will hold our state tree, however, we have imported the _rootReducer_ which we haven't created yet. we need to create it.
 
-\*src/reducers/index.js
+*src/reducers/index.js*
 
 ```javascript
 import { combineReducers } from "redux";
@@ -157,7 +157,7 @@ Here, we create the root reducer that will combine all our other reducers using 
 
 We will start with the _authReducer_
 
-\*src/reducers/auth.js
+*src/reducers/auth.js*
 
 ```javascript
 import {
@@ -217,10 +217,10 @@ export default function (state = initialState, action) {
 }
 ```
 
-Here we`ve created the auth reducer which will be responsible for changing the user authentication state. A reducer, usually has two important parameters, _initial state_ and _action._
-We have also import constant types that we haven't created yet. Lets go to our _types.js_ file and add them.
+Here we've created the auth reducer which will be responsible for changing the user authentication state. A reducer, usually has two important parameters, _initial state_ and _action._
+We have also imported constant types that we haven't created yet. Lets go to our _types.js_ file and add them.
 
-\*src/types/Types.js
+*src/types/Types.js*
 
 ```javascript
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -326,6 +326,8 @@ export default messageReducer;
 And now we add the constants to the _types.js_ file
 
 ```javascript
+...
+
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const GET_ARTICLES_REQUEST = "GET_ARTICLES_REQUEST";
@@ -540,9 +542,9 @@ export const createMessage = (msg) => {
 
 The _createMessage_ action is a simple function that will pass the message object to our store.
 
-Let us now config our _articles_ actions, so that we can be able to load the farm articles from the backend ApI.
+Let us now config our _articles_ actions, so that we can be able to load the farm articles from the backend API.
 
-\*src/actions/articles.js
+*src/actions/articles.js*
 
 ```javascript
 import {
@@ -618,7 +620,7 @@ export const loadAllArticles = () => async (dispatch) => {
 
 Everything we need to integrate the API with our application is done. However, we don't have our UI yet and we need to work on it.
 
-Let us add _bootstrap_ cdn links to our index.html file locatec in the public folder.
+Let us add _bootstrap_ cdn links to our index.html file located in the public folder.
 
 _public/index.html_
 
@@ -705,7 +707,7 @@ $ yarn add mdbreact
 $ yarn add react-bootstrap
 ```
 
-We will also need to cofig our router using the _react-router-dom_
+We will also need to config our router using the _react-router-dom_
 
 ```
 $ yarn add react-router-dom
@@ -839,12 +841,15 @@ export class App extends Component {
 
 export default App;
 ```
+We have renderd the provider and passed in *store* as a prop. This will allow all the other components to access whatever is in the store, both *state* and *dispatche*
 
 We should now be in a position to see our navbar, with the links working as intended.
 
 ![Navbar](smartfarm/src/assets/tutorialSnaps/Navbar.png)
 
 Let us now work on our Sign up page
+
+### Sign Up 
 
 _src/components/auth/Register.js_
 
@@ -1024,9 +1029,11 @@ If you havent installed redux dev tools follow this [guide](https://codeburst.io
 
 ![Sign up succeeded](smartfarm/src/assets/tutorialSnaps/signupsuccess.png)
 
-We can see that an event of type **REGISTER_SUCCESS** has been dispatched.
+We can see that an event of type **REGISTER_SUCCESS** has been dispatched. This means that our attempt to sign up as a new user was successful.
 
 Let us now work on our **Login UI**
+
+### Login
 
 _src/components/auth/Login.js_
 
@@ -1174,6 +1181,8 @@ Checking on our redux dev tools extension on chrome, we can see that and event o
 
 Let us now work on our articles
 
+### Articles
+
 _src/components/blog/articles_
 
 ```jsx
@@ -1278,18 +1287,23 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(Articles);
 ```
 
-We have created the articles page and connected it with the _loadArticles_ action. We have alsow added a select option for the user to load articles under specific category.
+We have created the articles page and connected it with the _loadArticles_ action. We have also added a select option for the user to load articles under specific category. This is how the articles page look like before the articles are loaded.
+
+![Articles page](smartfarm/src/assets/tutorialSnaps/articlesPage.png)
 
 Let us try and load articles
-![Articles page]()smartfarm/src/assets/tutorialSnaps/articlesPage.png
+
+And Boom! our articles loaded successfully. The images are not loading because the backend API is hosted for free on heroku, which does not support images to unpaid plans.
 
 ![Articles Loaded](smartfarm/src/assets/tutorialSnaps/content.png)
 
 ![Load Articles success](smartfarm/src/assets/tutorialSnaps/loadArtsSuccess.png)
 
-You can see that we were able to load our articles successfully.
+You can see that we were able to load our articles successfully. The event ** GET_ARTICLES_SUCCESS** was dispatched.
 
-Congratulations! you have come to the end of the tutorial. I hope you had a wonderful time.
+Congratulations! you have come to the end of the tutorial. I hope you had a wonderful time. 
+
+If you encounter errors, pliease reach out to me or adjust and make a pull request. Thanks.
 
 ### Developed and documented by
 
