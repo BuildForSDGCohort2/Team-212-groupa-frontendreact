@@ -52,6 +52,18 @@ export class Alerts extends Component {
       if (message.Login) {
         alert.error(message.Login);
       }
+      if (message.CropBlank) {
+        alert.error(message.CropBlank);
+      }
+      if (message.TitleBlank) {
+        alert.error(message.TitleBlank);
+      }
+      if (message.StageBlank) {
+        alert.error(message.StageBlank);
+      }
+      if (message.ContentBlack) {
+        alert.error(message.ContentBlack);
+      }
     }
   };
 
