@@ -46,13 +46,13 @@ export class Home extends Component {
             <div className="col-md-6">
               <h3 className="mt-5">What we do:</h3>
               <p>
-                We support the farmers throughout the whole farming life cycle
-                which is crop selection, land preparation, seed selection , seed
-                sowing, irrigation, crop growth, fertilizing and harvesting. The
-                system will enable farmers to access information on crops to
-                grow in their location based on the surrounding environmental
-                factors, how to grow the crops and provide a platform for the
-                farmers to connect with buyers for their produce.
+                A web application that supports the farmers throughout the whole
+                farming life cycle which is crop selection, land preparation,
+                seed selection, seed sowing, irrigation, crop growth,
+                fertilizing, and harvesting. The system enables farmers to
+                access information on crops to grow in their location based on
+                the surrounding environmental factors, how to grow the crops,
+                and also provide a platform for them to connect with the market.
               </p>
             </div>
             <div className="col-md-3"></div>
