@@ -9,6 +9,7 @@ import Licence from "../Licence";
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import PrivateRoute from "../PrivateRoute";
+import AddArticle from "../blog/AddArticle";
 
 class Mynavbar extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class Mynavbar extends React.Component {
               {this.props.isAuthenticated ? (
                 <Fragment>
                   <Nav.Link onClick={this.props.logout}>logout</Nav.Link>
+                  <Nav.Link href="/addarticles">Upload</Nav.Link>
                 </Fragment>
               ) : (
                 <Fragment>
@@ -54,6 +56,7 @@ class Mynavbar extends React.Component {
             <Login />
           </Route>
           <PrivateRoute exact path="/articles" component={Articles} />
+          <PrivateRoute exact path="/addarticles" component={AddArticle} />
 
           <Route path="/licence">
             <Licence />
