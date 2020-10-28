@@ -56,7 +56,7 @@ class Mynavbar extends React.Component {
             <Login />
           </Route>
           <PrivateRoute exact path="/articles" component={Articles} />
-          <PrivateRoute exact path="/addarticles" component={AddArticle} />
+          <Route exact path="/addarticles" component={AddArticle} />
 
           <Route path="/licence">
             <Licence />
