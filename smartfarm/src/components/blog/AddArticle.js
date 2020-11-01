@@ -2,19 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createMessage } from "../../actions/messages";
 import { addArticles } from "../../actions/articles";
+import CKEditor from "ckeditor4-react";
 
 export class AddArticle extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      crop: "",
+      crop: "maize",
       title: "",
       content: "",
       image: "",
-      value: "2",
+      value: "seedselection",
+      excerpt: "",
+      articleImage: "",
+      data: "",
     };
   }
+  onEditorChange = (event) => {
+    this.setState({
+      data: event.editor.getData(),
+    });
+  };
+
+  handleCropChange = (event) => {
+    this.setState({
+      crop: event.target.value,
+    });
+  };
   handleSelectChange = (event) => {
     this.setState({
       value: event.target.value,
@@ -26,9 +41,15 @@ export class AddArticle extends Component {
     });
   };
 
+  handleFileChange = (event) => {
+    this.setState({
+      articleImage: event.target.files[0],
+    });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(this.state.articleImage);
     if (this.state.crop === "") {
       const msg = {
         CropBlank: "Crop field cannot be blank",
@@ -44,19 +65,28 @@ export class AddArticle extends Component {
         StageBlank: "Stage cannot be blank",
       };
       this.props.createMessage(msg);
-    } else if (this.state.content === "") {
+    } else if (this.state.data === "") {
       const msg = {
         ContentBlack: "Content cannot be blank",
       };
       this.props.createMessage(msg);
     } else {
-      //do something
       const crop = this.state.crop;
-      const title = this.state.title.toString();
-      const content = this.state.content.toString();
-      const stage = this.state.value.toString();
-      const farmer = this.props.user.id.toString();
-      this.props.addArticles(crop, farmer, title, stage, content);
+      const title = this.state.title;
+      const content = this.state.data;
+      const stage = this.state.value;
+      const farmer = this.props.user.id;
+      const cropimage = this.state.cropimage;
+      const excerpt = this.state.excerpt;
+      this.props.addArticles(
+        title,
+        crop,
+        stage,
+        excerpt,
+        content,
+        cropimage,
+        farmer
+      );
     }
   };
 
@@ -79,18 +109,60 @@ export class AddArticle extends Component {
                 Share your skills, ideas or advice
               </legend>
               <div>
-                <label htmlFor="crop">Which crop </label>
+                <label htmlFor="crop" className="mt-2">
+                  {" "}
+                  Which Crop?
+                </label>
               </div>
-              <div>
-                <input
-                  className="form-control"
-                  type="text"
-                  id="crop"
-                  name="crop"
-                  value={this.state.crop}
-                  onChange={this.handleChange}
-                />
-              </div>
+              <select
+                value={this.state.value}
+                onChange={this.handleChange}
+                id="crop"
+                className="mb-3"
+              >
+                <option name="Maize" value="maize">
+                  Maize
+                </option>
+                <option name="Wheat" value="wheat">
+                  Wheat
+                </option>
+                <option name="Rice" value="rice">
+                  Rice
+                </option>
+                <option name="Tea" value="tea">
+                  Tea
+                </option>
+                <option name="coffee" value="coffee">
+                  coffee
+                </option>
+                <option name="Flowers" value="flowers">
+                  Flowers
+                </option>
+                <option name="Banana" value="banana">
+                  Banana
+                </option>
+                <option name="Avocando" value="avocando">
+                  Avocando
+                </option>
+                <option name="Cotton" value="cotton">
+                  Cotton
+                </option>
+                <option name="Groundnuts" value="groundnuts">
+                  Groundnuts
+                </option>
+                <option name="Lettuce" value="lettuce">
+                  Lettuce
+                </option>
+                <option name="Carrot" value="carrot">
+                  Carrot
+                </option>
+                <option name="Tomato" value="tomato">
+                  Tomato
+                </option>
+                <option name="Sugar cane" value="sugarCane">
+                  Sugar cane
+                </option>
+              </select>
               <div>
                 <label htmlFor="title">Give your article a great title</label>
               </div>
@@ -114,31 +186,59 @@ export class AddArticle extends Component {
                   id="stage"
                   className="mb-3"
                 >
-                  <option name="Crop Selection" value="2">
+                  <option name="Crop Selection" value="seedselection">
                     Crop Selection
                   </option>
-                  <option name="Land Preparation" value="1">
+                  <option name="Land Preparation" value="landprep">
                     Land Preparation
                   </option>
-                  <option name="Crop Care" value="3">
+                  <option name="Crop Care" value="cropcare">
                     Crop Care
                   </option>
-                  <option name="Post Harvesting" value="4">
-                    Post Harvesting
+                  <option name="Post Harvesting" value="harvesting">
+                    Harvesting
+                  </option>
+                  <option name="Marketing" value="marketing">
+                    Marketing
+                  </option>
+                  <option name="General" value="general">
+                    General
+                  </option>
+                  <option name="Storage" value="storage">
+                    Storage
                   </option>
                 </select>
               </div>
               <div>
-                <label htmlFor="content">Content</label>
+                <label htmlFor="excerpt">Excerpt</label>
               </div>
               <div>
                 <input
                   className="form-control"
                   type="text"
-                  id="content"
-                  name="content"
-                  value={this.state.content}
+                  id="excerpt"
+                  name="excerpt"
+                  value={this.state.excerpt}
                   onChange={this.handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="content">Content</label>
+              </div>
+              <div>
+                <CKEditor
+                  data={this.state.data}
+                  onChange={this.onEditorChange}
+                />
+              </div>
+
+              <div>
+                <input
+                  className="mt-2"
+                  type="file"
+                  id="cropImage"
+                  name="cropImage"
+                  onChange={this.handleFileChange}
                 />
               </div>
               <button type="submit" className="mt-2">
@@ -161,8 +261,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createMessage: (message) => dispatch(createMessage(message)),
-    addArticles: (crop, farmer, title, stage, content) =>
-      dispatch(addArticles(crop, farmer, title, stage, content)),
+    addArticles: (title, crop, stage, exerpt, content, cropimage, farmer) =>
+      dispatch(
+        addArticles(title, crop, stage, exerpt, content, cropimage, farmer)
+      ),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddArticle);
