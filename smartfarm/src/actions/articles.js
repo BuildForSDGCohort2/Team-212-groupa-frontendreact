@@ -106,19 +106,28 @@ export const loadArticle = (slug) => async (dispatch) => {
   }
 };
 
-export const addArticles = (crop, farmer, title, stage, content) => (
-  dispatch
-) => {
+export const addArticles = (
+  title,
+  crop,
+  stage,
+  exerpt,
+  content,
+  cropimage,
+  farmer
+) => (dispatch) => {
   dispatch({
     type: ADD_ARTICLES_REQUEST,
   });
 
   var data = JSON.stringify({
-    crop: "1",
+    title,
+    crop,
+    stage,
+    exerpt,
+    content,
+    cropimage,
+    featued: false,
     farmer: farmer,
-    title: title,
-    stage: stage,
-    content: content,
   });
 
   var config = {
