@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import PrivateRoute from "../PrivateRoute";
 import AddArticle from "../blog/AddArticle";
-import Article from "../blog/Article"
+import Article from "../blog/Article";
 
 class Mynavbar extends React.Component {
   constructor(props) {
