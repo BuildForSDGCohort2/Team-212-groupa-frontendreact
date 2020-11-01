@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadArticle } from "../../actions/articles";
 import axios from "axios";
-import { ARTICLE_LOADED } from "../../types/types";
+import { ARTICLE_LOADED, GET_ERRORS } from "../../types/types";
 
 export class Article extends Component {
   constructor(props) {
@@ -29,12 +29,18 @@ export class Article extends Component {
           payload: response.data,
         });
       } catch (err) {
-        console.log(err);
+        const errors = {
+          msg: err.response.data,
+          status: err.response.status,
+        };
+        dispatch({
+          type: GET_ERRORS,
+          payload: errors,
+        });
       }
     };
 
     getArticle();
-    console.log(this.props);
   };
 
   createContent = () => {
