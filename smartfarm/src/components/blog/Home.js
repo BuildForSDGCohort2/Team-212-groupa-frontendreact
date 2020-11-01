@@ -71,7 +71,7 @@ export class Home extends Component {
                 <div className="card-footer">
                   <button
                     onClick={() => {
-                      this.handleClick("Land Preparation");
+                      this.handleClick("LANDPREP");
                       this.setState({
                         prepClicked: true,
                       });
@@ -96,7 +96,7 @@ export class Home extends Component {
                   {" "}
                   <button
                     onClick={() => {
-                      this.handleClick("Crop Selection");
+                      this.handleClick("SEEDSELECTION");
                       this.setState({
                         selectionClicked: true,
                       });
@@ -121,7 +121,7 @@ export class Home extends Component {
                   {" "}
                   <button
                     onClick={() => {
-                      this.handleClick("Crop Care");
+                      this.handleClick("CROPCARE");
                       this.setState({
                         careClicked: true,
                       });
@@ -146,7 +146,7 @@ export class Home extends Component {
                   {" "}
                   <button
                     onClick={() => {
-                      this.handleClick("Post Harvesting");
+                      this.handleClick("HARVESTING");
                       this.setState({
                         postClicked: true,
                       });

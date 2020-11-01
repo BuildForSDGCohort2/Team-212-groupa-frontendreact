@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
 import PrivateRoute from "../PrivateRoute";
 import AddArticle from "../blog/AddArticle";
+import Article from "../blog/Article";
 
 class Mynavbar extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class Mynavbar extends React.Component {
           </Route>
           <PrivateRoute exact path="/articles" component={Articles} />
           <Route exact path="/addarticles" component={AddArticle} />
+          <Route exact path="/article/detail/:slug" component={Article} />
 
           <Route path="/licence">
             <Licence />
