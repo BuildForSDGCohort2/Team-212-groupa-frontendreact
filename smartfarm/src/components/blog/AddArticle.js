@@ -49,7 +49,7 @@ export class AddArticle extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.articleImage);
+
     if (this.state.crop === "") {
       const msg = {
         CropBlank: "Crop field cannot be blank",

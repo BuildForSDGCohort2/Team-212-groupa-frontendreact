@@ -9,7 +9,7 @@ const initialState = {
   articlesLoaded: false,
   articlesLoading: false,
   articles: [],
-  article:null
+  article: null,
 };
 
 export const articles = (state = initialState, action) => {
@@ -33,11 +33,11 @@ export const articles = (state = initialState, action) => {
         articlesLoaded: false,
         articles: [],
       };
-      case ARTICLE_LOADED:
-        return {
-          ...state,
-          article:action.payload
-        }
+    case ARTICLE_LOADED:
+      return {
+        ...state,
+        article: action.payload,
+      };
     default:
       return state;
   }

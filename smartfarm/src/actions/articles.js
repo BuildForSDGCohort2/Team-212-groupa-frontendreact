@@ -25,7 +25,7 @@ export const loadArticles = (stage) => async (dispatch, getState) => {
 
   let config = {
     method: "post",
-    url: `https://smartfarmendpoints.herokuapp.com/api/blog/articles/stage`,
+    url: "https://smartfarmendpoints.herokuapp.com/api/blog/articles/stage",
     headers: {
       "Content-Type": "application/json",
     },
@@ -36,10 +36,10 @@ export const loadArticles = (stage) => async (dispatch, getState) => {
   if (token) {
     config.headers["Authorization"] = `Token ${token}`;
   }
-  console.log(config);
+
   try {
     const response = await axios(config);
-    console.log(response);
+
     dispatch({
       type: GET_ARTICLES_SUCCESS,
       payload: response.data,
@@ -62,7 +62,7 @@ export const loadAllArticles = () => async (dispatch) => {
   });
   try {
     const response = await axios.get(
-      `https://smartfarmendpoints.herokuapp.com/api/blog/articles`
+      "https://smartfarmendpoints.herokuapp.com/api/blog/articles"
     );
     dispatch({
       type: GET_ARTICLES_SUCCESS,
