@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadAllArticles, loadArticles } from "../../actions/articles";
+import { Link } from "react-router-dom";
 
 export class Articles extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export class Articles extends Component {
 
     this.state = {
       currentStage: "",
-      value: "Crop Selection",
+      value: "SEEDSELECTION",
     };
   }
   handleChange = (event) => {
@@ -36,17 +37,23 @@ export class Articles extends Component {
           id="category"
           className="mb-3"
         >
-          <option name="Crop Selection" value="Crop Selection">
+          <option name="Crop Selection" value="SEEDSELECTION">
             Crop Selection
           </option>
-          <option name="Land Preparation" value="Land Preparation">
+          <option name="Land Preparation" value="LANDPREP">
             Land Preparation
           </option>
-          <option name="Crop Care" value="Crop Care">
+          <option name="Crop Care" value="CROPCARE">
             Crop Care
           </option>
-          <option name="Post Harvesting" value="Post Harvesting">
-            Post Harvesting
+          <option name="Post Harvesting" value="HARVESTING">
+            Harvesting
+          </option>
+          <option name="marketing" value="MARKETING">
+            Marketing
+          </option>
+          <option name="General" value="GENERAL">
+            General
           </option>
         </select>
         <button className="mx-2" onClick={this.handleSubmit}>
@@ -67,14 +74,20 @@ export class Articles extends Component {
                         className="img-responsive cropImage"
                         ALIGN="right"
                       />
-                      <p>{article.content}</p>
+                      <p>{article.excerpt}</p>
                     </div>
-                    <div className="card-footer text-left"></div>
+                    <div className="card-footer text-left bg-white">
+                      <p>
+                        <Link to={`article/detail/${article.slug}`}>
+                          Continue reading the article...
+                        </Link>
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))
             ) : (
-              <span className="text-success">Loading data...</span>
+              <span className="text-success">...</span>
             )}
           </div>
         </div>
