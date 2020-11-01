@@ -2,12 +2,14 @@ import {
   GET_ARTICLES_REQUEST,
   GET_ARTICLES_SUCCESS,
   GET_ARTICLES_FAIL,
+  ARTICLE_LOADED,
 } from "../types/types";
 
 const initialState = {
   articlesLoaded: false,
   articlesLoading: false,
   articles: [],
+  article:null
 };
 
 export const articles = (state = initialState, action) => {
@@ -31,6 +33,11 @@ export const articles = (state = initialState, action) => {
         articlesLoaded: false,
         articles: [],
       };
+      case ARTICLE_LOADED:
+        return {
+          ...state,
+          article:action.payload
+        }
     default:
       return state;
   }
