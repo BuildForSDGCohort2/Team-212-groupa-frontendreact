@@ -61,8 +61,14 @@ export class Alerts extends Component {
       if (message.StageBlank) {
         alert.error(message.StageBlank);
       }
-      if (message.ContentBlack) {
-        alert.error(message.ContentBlack);
+      if (message.ContentBlank) {
+        alert.error(message.ContentBlank);
+      }
+      if (message.ArticleAdded) {
+        alert.success(message.ArticleAdded);
+      }
+      if (message.ImageBlank) {
+        alert.error(message.ImageBlank);
       }
     }
   };

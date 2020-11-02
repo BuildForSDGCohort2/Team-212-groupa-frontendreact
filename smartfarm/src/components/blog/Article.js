@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loadArticle } from "../../actions/articles";
 import axios from "axios";
-import { ARTICLE_LOADED, GET_ERRORS } from "../../types/types";
 
 export class Article extends Component {
   constructor(props) {
@@ -24,19 +23,8 @@ export class Article extends Component {
         this.setState({
           blog: response.data,
         });
-        dispatch({
-          type: ARTICLE_LOADED,
-          payload: response.data,
-        });
       } catch (err) {
-        const errors = {
-          msg: err.response.data,
-          status: err.response.status,
-        };
-        dispatch({
-          type: GET_ERRORS,
-          payload: errors,
-        });
+        //do something
       }
     };
 

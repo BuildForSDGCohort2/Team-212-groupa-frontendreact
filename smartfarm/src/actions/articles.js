@@ -11,6 +11,7 @@ import {
   FETCH_ARTICLE_FAIL,
 } from "../types/types";
 import axios from "axios";
+import { createMessage } from "./messages";
 // import { createMessage } from "./messages";
 
 export const loadArticles = (stage) => async (dispatch, getState) => {
@@ -110,7 +111,7 @@ export const addArticles = (
   title,
   crop,
   stage,
-  exerpt,
+  excerpt,
   content,
   cropimage,
   farmer
@@ -119,24 +120,23 @@ export const addArticles = (
     type: ADD_ARTICLES_REQUEST,
   });
 
-  var data = JSON.stringify({
-    title,
-    crop,
-    stage,
-    exerpt,
-    content,
-    cropimage,
-    featued: false,
-    farmer: farmer,
-  });
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("crop", crop);
+  formData.append("farmer", farmer);
+  formData.append("stage", stage);
+  formData.append("excerpt", excerpt);
+  formData.append("content", content);
+  formData.append("cropimage", cropimage, cropimage.name);
+  formData.append("featured", false);
 
   var config = {
     method: "post",
     url: "https://smartfarmendpoints.herokuapp.com/api/blog/article",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
     },
-    data: data,
+    data: formData,
   };
 
   axios(config)
@@ -145,6 +145,10 @@ export const addArticles = (
         type: ADD_ARTICLES_SUCCESS,
         payload: response.data,
       });
+      const message = {
+        ArticleAdded: "Your ariticle has been uploaded",
+      };
+      dispatch(createMessage(message));
     })
     .catch(function (error) {
       const errors = {
