@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createMessage } from "../../actions/messages";
-import { addArticles } from "../../actions/articles";
+import { addArticles, loadArticles } from "../../actions/articles";
 import CKEditor from "ckeditor4-react";
+import { Redirect } from "react-router-dom";
 
 export class AddArticle extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export class AddArticle extends Component {
       excerpt: "",
       articleImage: "",
       data: "",
+      articleAdded: false,
     };
   }
   onEditorChange = (event) => {
@@ -67,7 +69,12 @@ export class AddArticle extends Component {
       this.props.createMessage(msg);
     } else if (this.state.data === "") {
       const msg = {
-        ContentBlack: "Content cannot be blank",
+        ContentBlank: "Content cannot be blank",
+      };
+      this.props.createMessage(msg);
+    } else if (this.state.articleImage === "") {
+      const msg = {
+        ImageBlank: "Please upload an image file",
       };
       this.props.createMessage(msg);
     } else {
@@ -76,7 +83,7 @@ export class AddArticle extends Component {
       const content = this.state.data;
       const stage = this.state.value;
       const farmer = this.props.user.id;
-      const cropimage = this.state.cropimage;
+      const cropimage = this.state.articleImage;
       const excerpt = this.state.excerpt;
       this.props.addArticles(
         title,
@@ -87,11 +94,18 @@ export class AddArticle extends Component {
         cropimage,
         farmer
       );
+      this.setState({
+        articleAdded: true,
+      });
     }
   };
 
   componentDidMount = () => {};
   render() {
+    if (this.state.articleAdded) {
+      this.props.loadArticles(this.state.value);
+      return <Redirect to="articles" />;
+    }
     return (
       <div className="container-fluid registerApp">
         <div className="row">
@@ -115,8 +129,8 @@ export class AddArticle extends Component {
                 </label>
               </div>
               <select
-                value={this.state.value}
-                onChange={this.handleChange}
+                value={this.state.crop}
+                onChange={this.handleCropChange}
                 id="crop"
                 className="mb-3"
               >
@@ -261,10 +275,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createMessage: (message) => dispatch(createMessage(message)),
-    addArticles: (title, crop, stage, exerpt, content, cropimage, farmer) =>
+    addArticles: (title, crop, farmer, stage, excerpt, content, cropimage) =>
       dispatch(
-        addArticles(title, crop, stage, exerpt, content, cropimage, farmer)
+        addArticles(title, crop, farmer, stage, excerpt, content, cropimage)
       ),
+    loadArticles: (stage) => dispatch(loadArticles(stage)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(AddArticle);
