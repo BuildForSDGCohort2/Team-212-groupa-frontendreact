@@ -69,7 +69,7 @@ export class Articles extends Component {
                     <div className="card-body">
                       {" "}
                       <img
-                        src={article.cropimage}
+                        src={`https://smartfarmendpoints.herokuapp.com${article.cropimage}`}
                         alt="cropImage"
                         className="img-responsive cropImage"
                         ALIGN="right"
